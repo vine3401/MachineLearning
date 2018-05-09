@@ -63,7 +63,8 @@ class NetWork(object):
       for mini_batch in mini_batches:
         self.update_mini_batch(mini_batch, eta)
       if test_data:
-        print("Epoch {0}: {1} / {2}".format(j, self.evaluate(test_data), n_test))
+        right = self.evaluate(test_data)
+        print("Epoch {0}: {1} / {2}  ac: {3}%".format(j, right, n_test, right * 100 / n_test))
       else:
         print("Epoch {0} complete".format(j))
   
