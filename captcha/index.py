@@ -2,8 +2,8 @@ import random
 import string
 
 import numpy as np
-from keras.models import *
-from keras.layers import *
+from keras.models import Model,Input
+from keras.layers import Conv2D, Flatten,Dropout, MaxPooling2D, Dense
 import matplotlib.pyplot as plt
 from captcha.image import ImageCaptcha
 
@@ -42,11 +42,12 @@ for i in range(4):
   x = Conv2D(32*2**i, (3, 3), activation='relu')(x)
   x = Conv2D(32*2**i, (3, 3), activation='relu')(x)
   x = MaxPooling2D((2, 2))(x)
+# 将图像展平成一维的列表。
 x = Flatten()(x)
 # 在训练过程中每次更新参数时随机断开一定百分比（rate）的输入神经元，防止过拟合。
 x = Dropout(0.25)(x)
 x = [Dense(n_class, activation='softmax', name="c%d" % (i+1))(x) for i in range(4)]
-model = Model(input=input_tensor, output=x)
+model = Model(inputs=input_tensor, outputs=x)
 model.compile(loss="categorical_crossentropy", optimizer="adadelta", metrics=['accuracy'])
 
 model.fit_generator(gen(), samples_per_epoch=1600, nb_epoch=5,
