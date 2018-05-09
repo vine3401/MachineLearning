@@ -39,8 +39,8 @@ def decode(y):
 input_tensor = Input((height, width, 3))
 x = input_tensor
 for i in range(4):
-  x = Convolution2D(32*2**i, 3, 3, activation='relu')(x)
-  x = Convolution2D(32*2**i, 3, 3, activation='relu')(x)
+  x = Conv2D(32*2**i, (3, 3), activation='relu')(x)
+  x = Conv2D(32*2**i, (3, 3), activation='relu')(x)
   x = MaxPooling2D((2, 2))(x)
 x = Flatten()(x)
 # 在训练过程中每次更新参数时随机断开一定百分比（rate）的输入神经元，防止过拟合。
