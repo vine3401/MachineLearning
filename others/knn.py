@@ -37,7 +37,7 @@ def test(data, label, test_ratio=0.2):
     print(error / test_set_size)
 
 
-source = np.loadtxt("datingTestSet2.txt")
+source = np.loadtxt("../datasets/datingTestSet2.txt")
 
 data = autoNorm(source[:, 0:3])
 label = source[:, -1]
