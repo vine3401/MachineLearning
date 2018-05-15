@@ -5,6 +5,8 @@ from keras.layers import Embedding, LSTM, Conv1D
 from keras.layers import MaxPooling1D,Dense, Dropout, Activation
 from keras.losses import binary_crossentropy
 from keras.optimizers import Adam
+
+
 max_features = 20000
 maxlen = 100
 embedding_size = 128
